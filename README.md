@@ -1,4 +1,4 @@
-# Ex No:9 Implementation-of-SVM-For-Spam-Mail-Detection
+# Implementation-of-SVM-For-Spam-Mail-Detection
 
 ## AIM:
 To write a program to implement the SVM For Spam Mail Detection.
@@ -8,81 +8,97 @@ To write a program to implement the SVM For Spam Mail Detection.
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. Import the required packages.
-2. Import the dataset to operate on.
-3. Split the dataset.
-4. Predict the required output
+Step1: Start
+
+Step2. Import the packages.
+
+Step3. Analyse the data. 
+
+Step4. Use modelselection and Countvectorizer to preditct the values. 
+
+Step5. Find the accuracy and display the result. 
+
+Step6: Stop
 
 ## Program:
-```
+
 /*
 Program to implement the SVM For Spam Mail Detection..
 Developed by: DHARMALINGAM S
 RegisterNumber:  212223040037
 */
 
-import chardet
-file='/content/spam.csv'
-with open(file,'rb') as rawdata:
-  result = chardet.detect(rawdata.read(100000))
-result
-
 
 import pandas as pd
-data=pd.read_csv('/content/spam.csv',encoding='Windows-1252')
+data=pd.read_csv("spam.csv", encoding='Windows-1252')
+data
 
-data.head()
+data.shape
 
-data.info()
+x=data['v2'].values
+y=data['v1'].values
+x.shape
 
-data.isnull().sum()
-
-x=data["v1"].values
-y=data["v2"].values
+y.shape
 
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2, random_state=0)
+x_train
+
+x_train.shape
+
 
 from sklearn.feature_extraction.text import CountVectorizer
 cv=CountVectorizer()
-
 x_train=cv.fit_transform(x_train)
 x_test=cv.transform(x_test)
-
 from sklearn.svm import SVC
 svc=SVC()
 svc.fit(x_train,y_train)
 y_pred=svc.predict(x_test)
 y_pred
 
-from sklearn import metrics
-accuracy=metrics.accuracy_score(y_test,y_pred)
-accuracy
+from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
+acc=accuracy_score(y_test,y_pred)
+acc
 
-```
+con=confusion_matrix(y_test,y_pred)
+print(con)
+
+cl=classification_report(y_test,y_pred)
+print(cl)
+
 
 ## Output:
+### data
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/4a522776-209c-4329-932c-be8f8102c5ba)
 
-## Result Output:
+### data.shape()
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/f8f741f4-3206-4526-92fd-c890f6ecb1e5)
 
-![image](https://github.com/Jai-1801/Implementation-of-SVM-For-Spam-Mail-Detection/assets/139335300/7c5f461a-d8d1-41c3-9852-a5041e1c2b61)
+### x.shape()
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/2d7d8faa-ef77-405b-aedb-3009855bfeb9)
 
-## data.head():
+### y.shape()  
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/d3439f11-7e22-4ade-b5c6-917b3352cb8d)
 
-![image](https://github.com/Jai-1801/Implementation-of-SVM-For-Spam-Mail-Detection/assets/139335300/32b859d4-a18b-4785-8aad-1238c25b6305)
+### x_train
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/67edd510-0d60-49f7-bde7-cd13ba895357)
 
-## data.info():
+### x_train.shape()
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/e9f7eb9a-89b8-4d67-b58c-29e8bd8668e0)
 
-![image](https://github.com/Jai-1801/Implementation-of-SVM-For-Spam-Mail-Detection/assets/139335300/0f7f3b8e-53c5-4d4e-ae7c-192ff7d9bbdd)
+### y_pred
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/d98bdfde-aa7b-46a0-814a-020100201f28)
 
-## Y_prediction value:
+### acc (accuracy)
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/da3dd64d-b341-4b5b-824e-dd621396b816)
 
-![image](https://github.com/Jai-1801/Implementation-of-SVM-For-Spam-Mail-Detection/assets/139335300/40a5f99f-4cd1-4b5b-842d-504d1be0c478)
+### con (confusion matrix)
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/43ae6fb1-8477-4118-abea-e8b2891123aa)
 
-## Accuracy value :
-
-![image](https://github.com/Jai-1801/Implementation-of-SVM-For-Spam-Mail-Detection/assets/139335300/2005b5c8-614e-454f-8f2d-31ef60c3c3d1)
+### cl (classification report)
+![image](https://github.com/amal-2006/Implementation-of-SVM-For-Spam-Mail-Detection/assets/148410730/c1a9e002-dc90-4f21-bb0d-daf799640c92)
 
 ## Result:
 Thus the program to implement the SVM For Spam Mail Detection is written and verified using python programming.
-
