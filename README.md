@@ -28,7 +28,7 @@ Developed by: DHARMALINGAM S
 RegisterNumber:  212223040037
 */
 
-
+```
 import pandas as pd
 data=pd.read_csv("spam.csv", encoding='Windows-1252')
 data
@@ -67,7 +67,7 @@ print(con)
 
 cl=classification_report(y_test,y_pred)
 print(cl)
-
+```
 
 ## Output:
 ### data
